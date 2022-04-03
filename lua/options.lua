@@ -1,0 +1,31 @@
+local set = vim.opt
+-- general settings
+set.undofile = true
+set.title = true
+set.ruler = true
+set.list = true
+set.hidden = true
+set.termguicolors = true
+set.showmode = false
+set.showcmd = false
+set.swapfile = false
+set.laststatus = 2
+set.cmdheight = 2
+set.updatetime = 300
+set.background = "dark"
+set.clipboard = "unnamedplus"
+set.shortmess = "c"
+set.listchars = "eol:¬,tab:→–,space:·,nbsp:␣,trail:…,precedes:«,extends:»"
+set.sessionoptions = "globals,folds,curdir,tabpages,buffers"
+set.wildmode = "longest,list,full"
+set.completeopt = "menu,menuone,noselect"
+-- window/buffer settings
+set.number = true
+-- set.relativenumber = true
+set.expandtab = false
+set.tabstop = 8
+set.shiftwidth = 3
+set.softtabstop = 3
+set.signcolumn = "number"
+set.filetype = 'on'
+set.syntax = 'on'
