@@ -44,6 +44,9 @@ local kind_icons = {
 }
 
 cmp.setup {
+  completion = {
+    autocomplete = false
+  },
   snippet = {
     expand = function(args)
       require('luasnip').lsp_expand(args.body)
@@ -51,7 +54,7 @@ cmp.setup {
   },
   mapping = {
     ['<C-k>'] = cmp.mapping.select_prev_item(),
-    ['<C-j>'] = cmp.mapping.select_prev_item(),
+    ['<C-j>'] = cmp.mapping.select_next_item(),
     ['<C-b>'] = cmp.mapping(cmp.mapping.scroll_docs(-1), { 'i', 'c' }),
     ['<C-f>'] = cmp.mapping(cmp.mapping.scroll_docs(1), { 'i', 'c' }),
     ['<C-Space>'] = cmp.mapping(cmp.mapping.complete(), { 'i', 'c' }),
@@ -60,7 +63,7 @@ cmp.setup {
         i = cmp.mapping.abort(),
         c = cmp.mapping.close(),
       }),
-    ['<CR>'] = cmp.mapping.confirm({ select = true }), 
+    ['<CR>'] = cmp.mapping.confirm({ select = true }),
     ["<Tab>"] = cmp.mapping(
       function(fallback)
         if cmp.visible() then
@@ -119,3 +122,20 @@ cmp.setup {
     native_menu = false
   }
 }
+
+_G.vimrc = _G.vimrc or {}
+_G.vimrc.cmp = _G.vimrc.cmp or {}
+_G.vimrc.cmp.on_text_changed = function()
+  local cursor = vim.api.nvim_win_get_cursor(0)
+  local line = vim.api.nvim_get_current_line()
+  local before = string.sub(line, 1, cursor[2] + 1)
+  if before:match('%s*$') then
+    cmp.complete() -- Trigger completion only if the cursor is placed at the end of line.
+  end
+end
+vim.cmd([[
+  augroup vimrc
+    silent autocmd
+    autocmd TextChanged,TextChangedI,TextChangedP * call luaeval('vimrc.cmp.on_text_changed()')
+  augroup END
+]])

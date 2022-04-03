@@ -22,9 +22,9 @@ packer.startup(function(use)
    use 'noib3/nvim-cokeline'
    -- file browser
    use {'nvim-neo-tree/neo-tree.nvim', requires = {
-      "nvim-lua/plenary.nvim",
-      "MunifTanjim/nui.nvim"
-    }}
+         "nvim-lua/plenary.nvim",
+         "MunifTanjim/nui.nvim"
+   }}
    -- lsp
    use 'neovim/nvim-lspconfig'
    use 'williamboman/nvim-lsp-installer'
@@ -57,6 +57,7 @@ packer.startup(function(use)
    use 'vim-scripts/ScrollColors'
    use 'yuttie/comfortable-motion.vim'
    -- utilities
+   use 'sheerun/vim-polyglot'
    use 'mattn/emmet-vim'
    -- eye candy
    use 'kyazdani42/nvim-web-devicons'
@@ -64,10 +65,11 @@ packer.startup(function(use)
    use 'lewis6991/gitsigns.nvim'
    use {
       "mvllow/modes.nvim", config = function ()
-	 vim.opt.cursorline = true
-	 require('modes').setup()
+         vim.opt.cursorline = true
+         require('modes').setup()
       end
    }
+   -- use {'rrethy/vim-hexokinase', { run = 'make hexokinase' }}
    -- show off
    use 'andweeb/presence.nvim'
 end)

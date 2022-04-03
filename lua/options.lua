@@ -22,10 +22,10 @@ set.completeopt = "menu,menuone,noselect"
 -- window/buffer settings
 set.number = true
 -- set.relativenumber = true
-set.expandtab = false
-set.tabstop = 8
-set.shiftwidth = 3
-set.softtabstop = 3
+-- set.expandtab = false
+-- set.tabstop = 8
+-- set.shiftwidth = 3
+-- set.softtabstop = 3
 set.signcolumn = "number"
 set.filetype = 'on'
 set.syntax = 'on'
