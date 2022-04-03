@@ -68,6 +68,8 @@ packer.startup(function(use)
 	 require('modes').setup()
       end
    }
+   -- show off
+   use 'andweeb/presence.nvim'
 end)
 
 -- Auto-compile plugins when plugins.lua is saved
