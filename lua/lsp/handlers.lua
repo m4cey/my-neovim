@@ -75,13 +75,13 @@ local function lsp_keymaps(bufnr)
   bmap(bufnr, "n", "<leader>e", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
   bmap(bufnr, "n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
   bmap(bufnr, "n",
-  "[d", '<cmd>lua vim.diagnostic.goto_prev({ border = "single" })<CR>', opts)
+  "[d", '<cmd>lua vim.diagnostic.goto_prev({source = true, border = "single" })<CR>', opts)
   bmap(bufnr, "n", "gl",
-    '<cmd>lua vim.lsp.diagnostic.show_line_diagnostics({ border = "single" })<CR>',
+    '<cmd>lua vim.diagnostic.open_float({source = true, border = "single" })<CR>',
     opts
   )
   bmap(bufnr, "n", "]d",
-  '<cmd>lua vim.diagnostic.goto_next({ border = "rounded" })<CR>', opts)
+  '<cmd>lua vim.diagnostic.goto_next({source = true, border = "single" })<CR>', opts)
   bmap(bufnr, "n", "<leader>q", "<cmd>lua vim.diagnostic.setloclist()<CR>", opts)
   vim.cmd [[ command! Format execute 'lua vim.lsp.buf.formatting()' ]]
 end

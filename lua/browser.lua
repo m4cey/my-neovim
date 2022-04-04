@@ -67,8 +67,8 @@ require("neo-tree").setup({
       position = "float",
       width = 40,
       mappings = {
-	 ["<space>"] = "toggle_node",
-	 ["<2-LeftMouse>"] = "open",
+	 ["o"] = "toggle_node",
+	 ["O"] = "open",
 	 ["<cr>"] = "open",
 	 ["S"] = "open_split",
 	 ["s"] = "open_vsplit",

@@ -28,7 +28,7 @@
 vim.cmd "colorscheme onenord"
 require('onenord').setup({
     borders = true,
-    fade_nc = false,
+    fade_nc = true,
     styles = {
       comments = "italic",
       strings = "NONE",
