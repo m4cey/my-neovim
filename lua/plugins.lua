@@ -7,7 +7,7 @@ end
 packer.init {
    display = {
       open_fn = function()
-	 return require("packer.util").float {border = "single"}
+	 return require("packer.util").float {border = "shadow"}
       end,
    },
 }
@@ -16,6 +16,7 @@ packer.startup(function(use)
    use 'wbthomason/packer.nvim'
    -- colorscheme
    use 'EdenEast/nightfox.nvim'
+   use 'rmehri01/onenord.nvim'
    -- statusline
    use 'nvim-lualine/lualine.nvim'
    -- bufferline
@@ -58,6 +59,7 @@ packer.startup(function(use)
    use 'yuttie/comfortable-motion.vim'
    -- utilities
    use 'sheerun/vim-polyglot'
+   use {"akinsho/toggleterm.nvim"}
    use 'mattn/emmet-vim'
    -- eye candy
    use 'kyazdani42/nvim-web-devicons'
