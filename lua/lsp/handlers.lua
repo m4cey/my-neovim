@@ -75,9 +75,9 @@ local function lsp_keymaps(bufnr)
   bmap(bufnr, "n", "<leader>e", "<cmd>lua vim.diagnostic.open_float()<CR>", opts)
   bmap(bufnr, "n", "<leader>f", "<cmd>lua vim.lsp.buf.formatting()<CR>", opts)
   bmap(bufnr, "n",
-  "[d", '<cmd>lua vim.diagnostic.goto_prev({source = true, border = "single" })<CR>', opts)
+  "[d", '<cmd>lua vim.diagnostic.goto_prev({source = true, border = "shadow" })<CR>', opts)
   bmap(bufnr, "n", "gl",
-    '<cmd>lua vim.diagnostic.open_float({source = true, border = "single" })<CR>',
+    '<cmd>lua vim.diagnostic.open_float({source = true, border = "shadow" })<CR>',
     opts
   )
   bmap(bufnr, "n", "]d",
@@ -101,6 +101,6 @@ if not status_ok then
   return
 end
 
-M.capabilities = cmp_nvim_lsp.update_capabilities(capabilities)
+M.capabilities = cmp_nvim_lsp.default_capabilities(capabilities)
 
 return M

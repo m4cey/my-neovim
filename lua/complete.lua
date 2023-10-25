@@ -44,8 +44,12 @@ local kind_icons = {
 }
 
 cmp.setup {
-  completion = {
-    autocomplete = false
+  -- completion = {
+  --   autocomplete = true
+  -- },
+  window = {
+	documentation = cmp.config.window.bordered(),
+	completion = cmp.config.window.bordered(),
   },
   snippet = {
     expand = function(args)
@@ -116,26 +120,8 @@ cmp.setup {
     { name = 'buffer' },
     { name = 'path' },
   },
-  documentation = true,
   experimental = {
     ghost_text = true,
     native_menu = false
   }
 }
-
-_G.vimrc = _G.vimrc or {}
-_G.vimrc.cmp = _G.vimrc.cmp or {}
-_G.vimrc.cmp.on_text_changed = function()
-  local cursor = vim.api.nvim_win_get_cursor(0)
-  local line = vim.api.nvim_get_current_line()
-  local before = string.sub(line, 1, cursor[2] + 1)
-  if before:match('%s*$') then
-    cmp.complete() -- Trigger completion only if the cursor is placed at the end of line.
-  end
-end
-vim.cmd([[
-  augroup vimrc
-    silent autocmd
-    autocmd TextChanged,TextChangedI,TextChangedP * call luaeval('vimrc.cmp.on_text_changed()')
-  augroup END
-]])

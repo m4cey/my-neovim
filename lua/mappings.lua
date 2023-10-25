@@ -22,3 +22,5 @@ map('n', '<Leader>c', ':bd<CR>', { silent = true })
 for i = 1,9 do
   map('n', ('<Leader>%s'):format(i), ('<Plug>(cokeline-focus-%s)'):format(i), { silent = true })
 end
+-- lightspeed
+map('n', 's', '<Plug>Lightspeed_omni_s', {silent = true})

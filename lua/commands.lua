@@ -25,7 +25,3 @@ vim.cmd "autocmd BufWritePost bm-files,bm-dirs !shortcuts"
 -- Run xrdb whenever Xdefaults or Xresources are updated.
 vim.cmd "autocmd BufRead,BufNewFile xresources,xdefaults set filetype=xdefaults"
 vim.cmd "autocmd BufWritePost Xresources,Xdefaults,xresources,xdefaults !xrdb %"
--- Recompile dwmblocks on config edit.
-vim.cmd "autocmd BufWritePost ~/src/tty1/dwmblocks/config.h !cd ~/src/tty1/dwmblocks/; sudo make install && { killall -q dwmblocks;setsid -f dwmblocks }"
-vim.cmd	"autocmd BufWritePost ~/src/tty1/dwm/dwm.c !cd ~/src/tty1/dwm/; sudo make install"
-vim.cmd "autocmd BufWritePost ~/src/tty1/dwm/config.h !cd ~/src/tty1/dwm/; sudo make install"

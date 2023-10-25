@@ -1,85 +1,96 @@
--- Use a protected call so we don't error out on first use
-local status_ok, packer = pcall(require, "packer")
-if not status_ok then
-   return
+local lazypath = vim.fn.stdpath("data") .. "/lazy/lazy.nvim"
+if not vim.loop.fs_stat(lazypath) then
+	vim.fn.system({
+		"git",
+		"clone",
+		"--filter=blob:none",
+		"https://github.com/folke/lazy.nvim.git",
+		"--branch=stable", -- latest stable release
+		lazypath,
+	})
 end
+vim.opt.rtp:prepend(lazypath)
 
-packer.init {
-   display = {
-      open_fn = function()
-	 return require("packer.util").float {border = "shadow"}
-      end,
-   },
-}
-
-packer.startup(function(use)
-   use 'wbthomason/packer.nvim'
-   -- colorscheme
-   use 'EdenEast/nightfox.nvim'
-   use 'rmehri01/onenord.nvim'
-   -- statusline
-   use 'nvim-lualine/lualine.nvim'
-   -- bufferline
-   use 'noib3/nvim-cokeline'
-   -- file browser
-   use {'nvim-neo-tree/neo-tree.nvim', requires = {
-         "nvim-lua/plenary.nvim",
-         "MunifTanjim/nui.nvim"
-   }}
-   -- lsp
-   use 'neovim/nvim-lspconfig'
-   use 'williamboman/nvim-lsp-installer'
-   -- tree-sitter
-   use {
-      'nvim-treesitter/nvim-treesitter',
-      run = ':TSUpdate'
-   }
-   -- autocomplete
-   use 'hrsh7th/cmp-nvim-lua'
-   use 'hrsh7th/cmp-nvim-lsp'
-   use 'hrsh7th/cmp-buffer'
-   use 'hrsh7th/cmp-path'
-   use 'hrsh7th/cmp-cmdline'
-   use 'saadparwaiz1/cmp_luasnip'
-   use 'hrsh7th/nvim-cmp'
-   -- JSON schemas
-   use 'b0o/schemastore.nvim'
-   -- snippets
-   use 'L3MON4D3/LuaSnip'
-   use 'rafamadriz/friendly-snippets'
-   -- motions and text objects
-   use 'tomtom/tcomment_vim'
-   use 'tpope/vim-surround'
-   use 'ggandor/lightspeed.nvim'
-   use 'wellle/targets.vim'
-   -- session manager
-   use 'tpope/vim-obsession'
-   -- provides fluid scrolling
-   use 'vim-scripts/ScrollColors'
-   use 'yuttie/comfortable-motion.vim'
-   -- utilities
-   use 'sheerun/vim-polyglot'
-   use {"akinsho/toggleterm.nvim"}
-   use 'mattn/emmet-vim'
-   -- eye candy
-   use 'kyazdani42/nvim-web-devicons'
-   use 'p00f/nvim-ts-rainbow'
-   use 'lewis6991/gitsigns.nvim'
-   use {
-      "mvllow/modes.nvim", config = function ()
-         vim.opt.cursorline = true
-         require('modes').setup()
-      end
-   }
-   -- use {'rrethy/vim-hexokinase', { run = 'make hexokinase' }}
-   -- show off
-   use 'andweeb/presence.nvim'
-end)
-
--- Auto-compile plugins when plugins.lua is saved
-vim.cmd [[
-augroup packer_user_config
-autocmd!
-autocmd BufWritePost plugins.lua source <afile> | PackerSync
-augroup end
-]]
+require("lazy").setup({
+	-- colorscheme
+	-- 'EdenEast/nightfox.nvim',
+	-- 'rmehri01/onenord.nvim',
+	{
+		"oncomouse/lushwal.nvim",
+		cmd = { "LushwalCompile" },
+		dependencies = {
+			{ "rktjmp/lush.nvim" },
+			{ "rktjmp/shipwright.nvim" },
+		},
+	},
+	-- statusline
+	'nvim-lualine/lualine.nvim',
+	-- bufferline
+	{
+		"willothy/nvim-cokeline",
+		dependencies = {
+			"nvim-lua/plenary.nvim",        -- Required for v0.4.0+
+			"kyazdani42/nvim-web-devicons", -- If you want devicons
+			"stevearc/resession.nvim"       -- Optional, for persistent history
+		},
+		config = true
+	},
+	-- file browser
+	{'nvim-neo-tree/neo-tree.nvim', dependencies = {
+		"nvim-lua/plenary.nvim",
+		"MunifTanjim/nui.nvim"
+	}},
+	-- lsp
+	'neovim/nvim-lspconfig',
+	-- mason
+	{
+	'williamboman/mason.nvim', config = function ()
+			require("mason").setup()
+		end
+	},
+	-- tree-sitter
+	{
+		'nvim-treesitter/nvim-treesitter',
+		build = ':TSUpdate'
+	},
+	-- autocomplete
+	'hrsh7th/cmp-nvim-lua',
+	'hrsh7th/cmp-nvim-lsp',
+	'hrsh7th/cmp-buffer',
+	'hrsh7th/cmp-path',
+	'hrsh7th/cmp-cmdline',
+	'saadparwaiz1/cmp_luasnip',
+	'hrsh7th/nvim-cmp',
+	-- JSON schemas
+	'b0o/schemastore.nvim',
+	-- snippets
+	'L3MON4D3/LuaSnip',
+	'rafamadriz/friendly-snippets',
+	-- motions and text objects
+	'tomtom/tcomment_vim',
+	'tpope/vim-surround',
+	'ggandor/lightspeed.nvim',
+	'wellle/targets.vim',
+	-- session manager
+	'tpope/vim-obsession',
+	-- provides fluid scrolling
+	'vim-scripts/ScrollColors',
+	'yuttie/comfortable-motion.vim',
+	-- utilities
+	-- 'sheerun/vim-polyglot',
+	{"akinsho/toggleterm.nvim"},
+	-- 'mattn/emmet-vim',
+	-- eye candy
+	'kyazdani42/nvim-web-devicons',
+	'p00f/nvim-ts-rainbow',
+	'lewis6991/gitsigns.nvim',
+	{
+		"mvllow/modes.nvim", config = function ()
+			vim.opt.cursorline = true
+			require('modes').setup()
+		end
+	},
+	-- use {'rrethy/vim-hexokinase', { run = 'make hexokinase' }}
+	-- show off
+	-- 'andweeb/presence.nvim',
+})
