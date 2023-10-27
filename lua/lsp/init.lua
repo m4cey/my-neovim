@@ -4,7 +4,7 @@ if not stats_ok then
 end
 lspconfig.lua_ls.setup {
   on_init = function(client)
-    local path = client.workspace_folders[1].name
+    local path = client.workLeader_folders[1].name
     if not vim.loop.fs_stat(path..'/.luarc.json') and not vim.loop.fs_stat(path..'/.luarc.jsonc') then
       client.config.settings = vim.tbl_deep_extend('force', client.config.settings, {
         Lua = {
@@ -14,7 +14,7 @@ lspconfig.lua_ls.setup {
             version = 'LuaJIT'
           },
           -- Make the server aware of Neovim runtime files
-          workspace = {
+          workLeader = {
             checkThirdParty = false,
             library = {
               vim.env.VIMRUNTIME
@@ -27,9 +27,48 @@ lspconfig.lua_ls.setup {
         }
       })
 
-      client.notify("workspace/didChangeConfiguration", { settings = client.config.settings })
+      client.notify("workLeader/didChangeConfiguration", { settings = client.config.settings })
     end
     return true
   end
 }
-require("lsp.handlers").setup()
+lspconfig.typst_lsp.setup{
+	settings = {
+		exportPdf = "onSave"
+	}
+}
+
+-- Global mappings.
+-- See `:help vim.diagnostic.*` for documentation on any of the below functions
+vim.keymap.set('n', '<Leader>e', vim.diagnostic.open_float)
+vim.keymap.set('n', '[d', vim.diagnostic.goto_prev)
+vim.keymap.set('n', ']d', vim.diagnostic.goto_next)
+vim.keymap.set('n', '<Leader>q', vim.diagnostic.setloclist)
+
+-- Use LspAttach autocommand to only map the following keys
+-- after the language server attaches to the current buffer
+vim.api.nvim_create_autocmd('LspAttach', {
+  group = vim.api.nvim_create_augroup('UserLspConfig', {}),
+  callback = function(ev)
+    -- Buffer local mappings.
+    -- See `:help vim.lsp.*` for documentation on any of the below functions
+    local opts = { buffer = ev.buf }
+    vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+    vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+    vim.keymap.set('n', 'H', vim.lsp.buf.hover, opts)
+    vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+    vim.keymap.set('n', '<C-h>', vim.lsp.buf.signature_help, opts)
+    vim.keymap.set('n', '<Leader>wa', vim.lsp.buf.add_workspace_folder, opts)
+    vim.keymap.set('n', '<Leader>wr', vim.lsp.buf.remove_workspace_folder, opts)
+    vim.keymap.set('n', '<Leader>wl', function()
+      print(vim.inspect(vim.lsp.buf.list_workLeader_folders()))
+    end, opts)
+    vim.keymap.set('n', '<Leader>D', vim.lsp.buf.type_definition, opts)
+    vim.keymap.set('n', '<Leader>rn', vim.lsp.buf.rename, opts)
+    vim.keymap.set({ 'n', 'v' }, '<Leader>ca', vim.lsp.buf.code_action, opts)
+    vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+    vim.keymap.set('n', '<Leader>f', function()
+      vim.lsp.buf.format { async = true }
+    end, opts)
+  end,
+})

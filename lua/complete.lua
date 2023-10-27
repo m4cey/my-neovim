@@ -119,6 +119,7 @@ cmp.setup {
     { name = 'luasnip' },
     { name = 'buffer' },
     { name = 'path' },
+    { name = 'orgmode' },
   },
   experimental = {
     ghost_text = true,

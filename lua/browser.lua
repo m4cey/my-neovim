@@ -145,4 +145,6 @@ git_status = {
    }
 }
 })
-vim.cmd([[nnoremap \ :Neotree reveal<cr>]])
+vim.cmd([[nnoremap \\ :Neotree reveal<cr>]])
+vim.cmd([[nnoremap \b :Neotree buffers reveal<cr>]])
+vim.cmd([[nnoremap \g :Neotree git_status reveal<cr>]])

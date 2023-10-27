@@ -29,30 +29,48 @@ require("lazy").setup({
 	{
 		"willothy/nvim-cokeline",
 		dependencies = {
-			"nvim-lua/plenary.nvim",        -- Required for v0.4.0+
+			"nvim-lua/plenary.nvim", -- Required for v0.4.0+
 			"kyazdani42/nvim-web-devicons", -- If you want devicons
-			"stevearc/resession.nvim"       -- Optional, for persistent history
+			"stevearc/resession.nvim" -- Optional, for persistent history
 		},
 		config = true
 	},
+	{
+		'nvim-orgmode/orgmode',
+		dependencies = {
+			{ 'nvim-treesitter/nvim-treesitter', lazy = true },
+		},
+		event = 'VeryLazy',
+	},
 	-- file browser
-	{'nvim-neo-tree/neo-tree.nvim', dependencies = {
-		"nvim-lua/plenary.nvim",
-		"MunifTanjim/nui.nvim"
-	}},
-	-- lsp
-	'neovim/nvim-lspconfig',
+	{
+		'nvim-neo-tree/neo-tree.nvim',
+		dependencies = {
+			"nvim-lua/plenary.nvim",
+			"MunifTanjim/nui.nvim"
+		}
+	},
 	-- mason
 	{
-	'williamboman/mason.nvim', config = function ()
+		'williamboman/mason.nvim',
+		config = function()
 			require("mason").setup()
 		end
 	},
+	-- lspconfig
+	'neovim/nvim-lspconfig',
 	-- tree-sitter
 	{
 		'nvim-treesitter/nvim-treesitter',
 		build = ':TSUpdate'
 	},
+	-- typst
+	{
+		'kaarmu/typst.vim',
+		ft = 'typst',
+		lazy = false,
+	},
+
 	-- autocomplete
 	'hrsh7th/cmp-nvim-lua',
 	'hrsh7th/cmp-nvim-lsp',
@@ -66,11 +84,13 @@ require("lazy").setup({
 	-- snippets
 	'L3MON4D3/LuaSnip',
 	'rafamadriz/friendly-snippets',
+
 	-- motions and text objects
 	'tomtom/tcomment_vim',
 	'tpope/vim-surround',
 	'ggandor/lightspeed.nvim',
 	'wellle/targets.vim',
+
 	-- session manager
 	'tpope/vim-obsession',
 	-- provides fluid scrolling
@@ -78,14 +98,15 @@ require("lazy").setup({
 	'yuttie/comfortable-motion.vim',
 	-- utilities
 	-- 'sheerun/vim-polyglot',
-	{"akinsho/toggleterm.nvim"},
+	{ "akinsho/toggleterm.nvim" },
 	-- 'mattn/emmet-vim',
 	-- eye candy
 	'kyazdani42/nvim-web-devicons',
 	'p00f/nvim-ts-rainbow',
 	'lewis6991/gitsigns.nvim',
 	{
-		"mvllow/modes.nvim", config = function ()
+		"mvllow/modes.nvim",
+		config = function()
 			vim.opt.cursorline = true
 			require('modes').setup()
 		end

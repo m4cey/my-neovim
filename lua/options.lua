@@ -30,3 +30,4 @@ set.number = true
 set.signcolumn = "number"
 set.filetype = 'on'
 set.syntax = 'on'
+set.conceallevel = 2

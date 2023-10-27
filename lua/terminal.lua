@@ -9,7 +9,7 @@ require("toggleterm").setup{
   insert_mappings = true, -- whether or not the open mapping applies in insert mode
   terminal_mappings = true, -- whether or not the open mapping applies in the opened terminals
   persist_size = true,
-  direction = 'float', -- 'vertical' | 'horizontal' | 'window' | 'float'
+  direction = 'horizontal', -- 'vertical' | 'horizontal' | 'window' | 'float'
   close_on_exit = false,
   shell = vim.o.shell,
   float_opts = {
