@@ -22,6 +22,3 @@ vim.cmd [[
 
 -- When shortcut files are updated, renew bash and ranger configs with new material:
 vim.cmd "autocmd BufWritePost bm-files,bm-dirs !shortcuts"
--- Run xrdb whenever Xdefaults or Xresources are updated.
-vim.cmd "autocmd BufRead,BufNewFile xresources,xdefaults set filetype=xdefaults"
-vim.cmd "autocmd BufWritePost Xresources,Xdefaults,xresources,xdefaults !xrdb %"

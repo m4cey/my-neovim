@@ -13,35 +13,19 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	-- colorscheme
-	-- 'EdenEast/nightfox.nvim',
-	-- 'rmehri01/onenord.nvim',
-	{
-		"oncomouse/lushwal.nvim",
-		cmd = { "LushwalCompile" },
-		dependencies = {
-			{ "rktjmp/lush.nvim" },
-			{ "rktjmp/shipwright.nvim" },
-		},
-	},
+	{ "catppuccin/nvim",        name = "catppuccin", priority = 1000 },
+
 	-- statusline
 	'nvim-lualine/lualine.nvim',
 	-- bufferline
 	{
 		"willothy/nvim-cokeline",
 		dependencies = {
-			"nvim-lua/plenary.nvim", -- Required for v0.4.0+
-			"kyazdani42/nvim-web-devicons", -- If you want devicons
-			"stevearc/resession.nvim" -- Optional, for persistent history
+			"nvim-lua/plenary.nvim",
+			-- "kyazdani42/nvim-web-devicons",
 		},
-		config = true
 	},
-	{
-		'nvim-orgmode/orgmode',
-		dependencies = {
-			{ 'nvim-treesitter/nvim-treesitter', lazy = true },
-		},
-		event = 'VeryLazy',
-	},
+
 	-- file browser
 	{
 		'nvim-neo-tree/neo-tree.nvim',
@@ -50,6 +34,7 @@ require("lazy").setup({
 			"MunifTanjim/nui.nvim"
 		}
 	},
+
 	-- mason
 	{
 		'williamboman/mason.nvim',
@@ -57,18 +42,16 @@ require("lazy").setup({
 			require("mason").setup()
 		end
 	},
+	-- formatter
+	'sbdchd/neoformat',
+
 	-- lspconfig
 	'neovim/nvim-lspconfig',
+
 	-- tree-sitter
 	{
 		'nvim-treesitter/nvim-treesitter',
 		build = ':TSUpdate'
-	},
-	-- typst
-	{
-		'kaarmu/typst.vim',
-		ft = 'typst',
-		lazy = false,
 	},
 
 	-- autocomplete
@@ -79,8 +62,10 @@ require("lazy").setup({
 	'hrsh7th/cmp-cmdline',
 	'saadparwaiz1/cmp_luasnip',
 	'hrsh7th/nvim-cmp',
-	-- JSON schemas
-	'b0o/schemastore.nvim',
+	'onsails/lspkind.nvim',
+	'dmitmel/cmp-digraphs',
+	'chrisgrieser/cmp-nerdfont',
+
 	-- snippets
 	'L3MON4D3/LuaSnip',
 	'rafamadriz/friendly-snippets',
@@ -93,25 +78,64 @@ require("lazy").setup({
 
 	-- session manager
 	'tpope/vim-obsession',
+
 	-- provides fluid scrolling
 	'vim-scripts/ScrollColors',
 	'yuttie/comfortable-motion.vim',
+
 	-- utilities
-	-- 'sheerun/vim-polyglot',
 	{ "akinsho/toggleterm.nvim" },
-	-- 'mattn/emmet-vim',
-	-- eye candy
-	'kyazdani42/nvim-web-devicons',
-	'p00f/nvim-ts-rainbow',
-	'lewis6991/gitsigns.nvim',
 	{
-		"mvllow/modes.nvim",
+		'windwp/nvim-autopairs',
+		event = "InsertEnter",
+	},
+
+	-- eye candy
+	-- 'kyazdani42/nvim-web-devicons',
+	'HiPhish/rainbow-delimiters.nvim',
+	'lewis6991/gitsigns.nvim',
+	'MrPicklePinosaur/typst-conceal.vim',
+	{
+		"lukas-reineke/indent-blankline.nvim",
+		main = "ibl",
+	},
+	{
+		'norcalli/nvim-colorizer.lua',
 		config = function()
-			vim.opt.cursorline = true
-			require('modes').setup()
+			vim.opt.termguicolors = true
+			require('colorizer').setup()
 		end
 	},
-	-- use {'rrethy/vim-hexokinase', { run = 'make hexokinase' }}
+	-- quality of life
+	{
+		"tversteeg/registers.nvim",
+		name = "registers",
+		keys = {
+			{ "\"",    mode = { "n", "v" } },
+			{ "<C-R>", mode = "i" }
+		},
+		cmd = "Registers",
+	},
+	'mhinz/vim-sayonara',
+	{
+		"chrishrb/gx.nvim",
+		event = { "BufEnter" },
+		dependencies = { "nvim-lua/plenary.nvim" },
+		config = function() require("gx").setup {
+			open_browser_app = "handlr", -- specify your browser app; default for macOS is "open", Linux "xdg-open" and Windows "powershell.exe"
+			open_browser_args = { "open" }, -- specify any arguments, such as --background for macOS' "open".
+			handlers = {
+				plugin = true, -- open plugin links in lua (e.g. packer, lazy, ..)
+				github = true, -- open github issues
+				brewfile = true, -- open Homebrew formulaes and casks
+				package_json = true, -- open dependencies from package.json
+				search = true, -- search the web/selection on the web if nothing else is found
+			},
+			handler_options = {
+				search_engine = "https://duckduckgo.com/search?q=", -- or you can pass in a custom search engine
+			},
+		} end,
+	},
 	-- show off
 	-- 'andweeb/presence.nvim',
 })

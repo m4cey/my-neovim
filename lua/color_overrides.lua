@@ -1,0 +1,1 @@
+/home/mace/.cache/wal/color_overrides.lua

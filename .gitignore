@@ -2,3 +2,4 @@ colors
 plugin
 lazy-lock.json
 lua/lualine/
+Session.vim

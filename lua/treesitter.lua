@@ -1,6 +1,6 @@
 require 'nvim-treesitter.configs'.setup {
 	-- One of "all", "maintained" (parsers with maintainers), or a list of languages
-	-- ensure_installed = "maintained",
+	ensure_installed = { 'vim', 'lua', 'go', 'bash', 'html', 'css', 'markdown', 'markdown_inline', 'regex' },
 
 	-- Install languages synchronously (only applied to `ensure_installed`)
 	sync_install = false,
@@ -19,13 +19,22 @@ require 'nvim-treesitter.configs'.setup {
 		-- Set this to `true` if you depend on 'syntax' being enabled (like for indentation).
 		-- Using this option may slow down your editor, and you may see some duplicate highlights.
 		-- Instead of true it can also be a list of languages
-		additional_vim_regex_highlighting = { 'org' },
+		additional_vim_regex_highlighting = false
 	},
-	ensure_installed = { 'org' },
 
-	rainbow = {
-		enable = true,
-		extended_mode = true,
-		max_file_lines = nil
-	}
+	-- rainbow = {
+	-- 	enable = true,
+	-- 	extended_mode = true,
+	-- 	max_file_lines = nil
+	-- }
+}
+local parser_config = require 'nvim-treesitter.parsers'.get_parser_configs()
+
+parser_config.typst = {
+	install_info = {
+		url = 'https://github.com/uben0/tree-sitter-typst',
+		files = { 'src/parser.c', 'src/scanner.c' },
+		-- requires_generate_from_grammar = false,
+	},
+	filetype = 'typ',
 }
