@@ -1,3 +1,12 @@
+require 'typst-preview'.setup {
+	debug = true,
+	open_cmd = 'vimb',
+	set_follow_cursor = false,
+	get_root = function()--bufnr_of_typst_buffer)
+		return vim.fn.getcwd()
+	end,
+}
+
 local registers = require 'registers'
 registers.setup {
 	-- Show a line at the bottom with registers that aren't filled
@@ -96,13 +105,12 @@ require "rainbow-delimiters.setup".setup {
 		lua = 'rainbow-blocks',
 	},
 	highlight = {
-		'RainbowDelimiterYellow',
 		'RainbowDelimiterRed',
-		'RainbowDelimiterOrange',
-		'RainbowDelimiterViolet',
 		'RainbowDelimiterGreen',
-		'RainbowDelimiterCyan',
+		'RainbowDelimiterYellow',
 		'RainbowDelimiterBlue',
+		'RainbowDelimiterViolet',
+		'RainbowDelimiterCyan',
 	},
 }
 

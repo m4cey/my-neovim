@@ -93,7 +93,7 @@ lspconfig.lua_ls.setup {
 
 lspconfig.typst_lsp.setup {
 	settings = {
-		exportPdf = "onType"
+		exportPdf = "onSave"
 	}
 }
 

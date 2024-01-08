@@ -58,6 +58,13 @@ require("catppuccin").setup({
 				IblIndent = { fg = colors.overlay0 },
 				IblScope = { fg = colors.text },
 
+				RainbowDelimiterRed = { fg = colors.red },
+				RainbowDelimiterGreen = { fg = colors.green },
+				RainbowDelimiterYellow = { fg = colors.yellow },
+				RainbowDelimiterCyan = { fg = colors.teal },
+				RainbowDelimiterViolet = { fg = colors.pink },
+				RainbowDelimiterBlue = { fg = colors.blue },
+
 				-- Noice
 				NoiceMini = { bg = colors.base },
 
@@ -276,7 +283,7 @@ require("catppuccin").setup({
 	},
 	integrations = {
 		cmp = true,
-		gitsigns = false,
+		gitsigns = true,
 		treesitter = true,
 		indent_blankline = {
 			enabled = true,

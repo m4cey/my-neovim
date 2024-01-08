@@ -22,3 +22,5 @@ vim.cmd [[
 
 -- When shortcut files are updated, renew bash and ranger configs with new material:
 vim.cmd "autocmd BufWritePost bm-files,bm-dirs !shortcuts"
+-- Colorizer
+vim.cmd "autocmd BufWritePost * :ColorizerAttachToBuffer"

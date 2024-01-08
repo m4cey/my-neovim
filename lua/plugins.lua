@@ -13,8 +13,11 @@ vim.opt.rtp:prepend(lazypath)
 
 require("lazy").setup({
 	-- colorscheme
-	{ "catppuccin/nvim",        name = "catppuccin", priority = 1000 },
-
+	{
+		"catppuccin/nvim",
+		name = "catppuccin",
+		priority = 1000
+	},
 	-- statusline
 	'nvim-lualine/lualine.nvim',
 	-- bufferline
@@ -73,9 +76,14 @@ require("lazy").setup({
 	-- motions and text objects
 	'tomtom/tcomment_vim',
 	'tpope/vim-surround',
-	'ggandor/lightspeed.nvim',
 	'wellle/targets.vim',
-
+	{
+		'ggandor/leap.nvim',
+		dependencies = { "tpope/vim-repeat" },
+		config = function()
+			require('leap').create_default_mappings()
+		end,
+	},
 	-- session manager
 	'tpope/vim-obsession',
 
@@ -90,8 +98,17 @@ require("lazy").setup({
 		event = "InsertEnter",
 	},
 
+	-- typst
+	{
+	  -- 'chomosuke/typst-preview.nvim',
+	  dir = '~/src/mace/typst-preview.nvim',
+	  branch = 'custom_open_cmd',
+	  ft = 'typst',
+	  version = '0.1.*',
+	  build = function() require 'typst-preview'.update() end,
+	},
+
 	-- eye candy
-	-- 'kyazdani42/nvim-web-devicons',
 	'HiPhish/rainbow-delimiters.nvim',
 	'lewis6991/gitsigns.nvim',
 	'MrPicklePinosaur/typst-conceal.vim',
@@ -136,6 +153,12 @@ require("lazy").setup({
 			},
 		} end,
 	},
+	{
+		'nmac427/guess-indent.nvim',
+		config = function()
+			require('guess-indent').setup {}
+		end
+	},
 	-- show off
-	-- 'andweeb/presence.nvim',
+	'andweeb/presence.nvim',
 })

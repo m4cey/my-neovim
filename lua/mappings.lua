@@ -25,4 +25,4 @@ for i = 1, 9 do
         {silent = true})
 end
 -- lightspeed
-map('n', 's', '<Plug>Lightspeed_omni_s', {silent = true})
+-- map('n', 's', '<Plug>Lightspeed_omni_s', {silent = true})
