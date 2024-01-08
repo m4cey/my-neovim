@@ -1,6 +1,6 @@
 require 'typst-preview'.setup {
-	debug = true,
-	open_cmd = 'vimb',
+	debug = false,
+	open_cmd = 'firefox -P typst-preview --class typst-preview http://%s',
 	set_follow_cursor = false,
 	get_root = function()--bufnr_of_typst_buffer)
 		return vim.fn.getcwd()

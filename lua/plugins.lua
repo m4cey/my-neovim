@@ -100,9 +100,8 @@ require("lazy").setup({
 
 	-- typst
 	{
-	  -- 'chomosuke/typst-preview.nvim',
-	  dir = '~/src/mace/typst-preview.nvim',
-	  branch = 'custom_open_cmd',
+	  'chomosuke/typst-preview.nvim',
+	  dev = true,
 	  ft = 'typst',
 	  version = '0.1.*',
 	  build = function() require 'typst-preview'.update() end,
@@ -161,4 +160,14 @@ require("lazy").setup({
 	},
 	-- show off
 	'andweeb/presence.nvim',
+},
+{
+	dev = {
+		path = "~/src/mace/",
+	},
+},
+{
+	dev = {
+		path = "~/src/mace/",
+	},
 })
