@@ -16,7 +16,9 @@ require('lualine').setup {
 	sections = {
 		lualine_a = { 'mode' },
 		lualine_b = { 'branch', 'diff', 'diagnostics' },
-		lualine_c = { { 'filename', path = 1, symbols = { modified = ' ', readonly = ' ' } } },
+		lualine_c = {
+			{ 'filename', path = 1, symbols = { modified = ' ', readonly = ' ' } },
+		},
 		lualine_x = { 'encoding', 'fileformat', 'filetype',
 			{
 				require('lazy.status').updates,

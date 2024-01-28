@@ -10,6 +10,7 @@ require("presence"):setup({
             "https://avatars.githubusercontent.com/u/67595261?s=200&v=4"
         }
     },
+    show_time = false,
     -- Rich Presence text options
     editing_text = "Editing %s",
     file_explorer_text = "Browsing %s",

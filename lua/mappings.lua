@@ -19,6 +19,8 @@ map('n', '<Leader>s', '<Plug>(cokeline-pick-focus)', {silent = true})
 map('n', '<Leader>S', '<Plug>(cokeline-pick-close)', {silent = true})
 map('n', '<Leader>x', ':Sayonara!<CR>', {silent = true})
 map('n', '<Leader>f', ':Neoformat<CR>', {silent = true})
+map('n', '<Leader>m', ':Bmessages<CR>', {silent = true})
+map('n', '<Leader>Z', ':ZenMode<CR>', {silent = true})
 
 for i = 1, 9 do
     map('n', ('<Leader>%s'):format(i), ('<Plug>(cokeline-focus-%s)'):format(i),

@@ -18,6 +18,7 @@ require("lazy").setup({
 		name = "catppuccin",
 		priority = 1000
 	},
+	'jbyuki/nabla.nvim',
 	-- statusline
 	'nvim-lualine/lualine.nvim',
 	-- bufferline
@@ -27,6 +28,13 @@ require("lazy").setup({
 			"nvim-lua/plenary.nvim",
 			-- "kyazdani42/nvim-web-devicons",
 		},
+	},
+
+	-- messages
+	{
+		"ariel-frischer/bmessages.nvim",
+		event = "CmdlineEnter",
+		opts = {}
 	},
 
 	-- file browser
@@ -77,19 +85,25 @@ require("lazy").setup({
 	'tomtom/tcomment_vim',
 	'tpope/vim-surround',
 	'wellle/targets.vim',
-	{
-		'ggandor/leap.nvim',
-		dependencies = { "tpope/vim-repeat" },
-		config = function()
-			require('leap').create_default_mappings()
-		end,
-	},
+	-- {
+	-- 	'ggandor/leap.nvim',
+	-- 	dependencies = { "tpope/vim-repeat" },
+	-- 	config = function()
+	-- 		require('leap').create_default_mappings()
+	-- 	end,
+	-- },
 	-- session manager
 	'tpope/vim-obsession',
 
 	-- provides fluid scrolling
-	'vim-scripts/ScrollColors',
-	'yuttie/comfortable-motion.vim',
+	-- 'vim-scripts/ScrollColors',
+	-- 'yuttie/comfortable-motion.vim',
+	{
+		"karb94/neoscroll.nvim",
+		config = function ()
+			require('neoscroll').setup {}
+		end
+	},
 
 	-- utilities
 	{ "akinsho/toggleterm.nvim" },
@@ -100,11 +114,14 @@ require("lazy").setup({
 
 	-- typst
 	{
-	  'chomosuke/typst-preview.nvim',
-	  dev = true,
-	  ft = 'typst',
-	  version = '0.1.*',
-	  build = function() require 'typst-preview'.update() end,
+		'chomosuke/typst-preview.nvim',
+		dev = false,
+		ft = 'typst',
+		-- version = '0.1.*',
+		build = function() require 'typst-preview'.update() end,
+		opts = {
+			open_cmd = 'firefox %s -P typst-preview --class typst-preview',
+		}
 	},
 
 	-- eye candy
@@ -123,6 +140,7 @@ require("lazy").setup({
 		end
 	},
 	-- quality of life
+	'mhinz/vim-sayonara',
 	{
 		"tversteeg/registers.nvim",
 		name = "registers",
@@ -132,39 +150,19 @@ require("lazy").setup({
 		},
 		cmd = "Registers",
 	},
-	'mhinz/vim-sayonara',
-	{
-		"chrishrb/gx.nvim",
-		event = { "BufEnter" },
-		dependencies = { "nvim-lua/plenary.nvim" },
-		config = function() require("gx").setup {
-			open_browser_app = "handlr", -- specify your browser app; default for macOS is "open", Linux "xdg-open" and Windows "powershell.exe"
-			open_browser_args = { "open" }, -- specify any arguments, such as --background for macOS' "open".
-			handlers = {
-				plugin = true, -- open plugin links in lua (e.g. packer, lazy, ..)
-				github = true, -- open github issues
-				brewfile = true, -- open Homebrew formulaes and casks
-				package_json = true, -- open dependencies from package.json
-				search = true, -- search the web/selection on the web if nothing else is found
-			},
-			handler_options = {
-				search_engine = "https://duckduckgo.com/search?q=", -- or you can pass in a custom search engine
-			},
-		} end,
-	},
 	{
 		'nmac427/guess-indent.nvim',
 		config = function()
 			require('guess-indent').setup {}
 		end
 	},
+	{
+		"folke/zen-mode.nvim",
+		opts = {
+		}
+	},
 	-- show off
 	'andweeb/presence.nvim',
-},
-{
-	dev = {
-		path = "~/src/mace/",
-	},
 },
 {
 	dev = {

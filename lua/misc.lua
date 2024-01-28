@@ -1,12 +1,3 @@
-require 'typst-preview'.setup {
-	debug = false,
-	open_cmd = 'firefox -P typst-preview --class typst-preview http://%s',
-	set_follow_cursor = false,
-	get_root = function()--bufnr_of_typst_buffer)
-		return vim.fn.getcwd()
-	end,
-}
-
 local registers = require 'registers'
 registers.setup {
 	-- Show a line at the bottom with registers that aren't filled
@@ -121,28 +112,3 @@ require("ibl").setup {
 	},
 	scope = { enabled = true }
 }
--- tab_char:
--- • left aligned solid
---   • `▏`
---   • `▎` (default)
---   • `▍`
---   • `▌`
---   • `▋`
---   • `▊`
---   • `▉`
---   • `█`
--- • center aligned solid
---   • `│`
---   • `┃`
--- • right aligned solid
---   • `▕`
---   • `▐`
--- • center aligned dashed
---   • `╎`
---   • `╏`
---   • `┆`
---   • `┇`
---   • `┊`
---   • `┋`
--- • center aligned double
---   • `║`

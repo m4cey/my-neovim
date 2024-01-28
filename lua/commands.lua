@@ -7,8 +7,7 @@ vim.cmd [[
 ]]
 
 -- Disables automatic commenting on newline
-vim.cmd "autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o"
-
+-- vim.cmd "autocmd FileType * setlocal formatoptions-=c formatoptions-=r formatoptions-=o"
 -- Save file as sudo on files that require root permission
 vim.cmd "command -bar W exe 'w !sudo tee >/dev/null %:p:S' | setl nomod"
 -- CD to current file directory
@@ -20,7 +19,7 @@ vim.cmd [[
 	autocmd BufWritePre * %s/\n\+\%$//e
 ]]
 
--- When shortcut files are updated, renew bash and ranger configs with new material:
+-- When shortcut files are updated, renew configs with new material:
 vim.cmd "autocmd BufWritePost bm-files,bm-dirs !shortcuts"
 -- Colorizer
 vim.cmd "autocmd BufWritePost * :ColorizerAttachToBuffer"
