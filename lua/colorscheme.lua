@@ -1,5 +1,5 @@
 require("catppuccin").setup({
-	flavour = require('color_overrides').flavour, -- latte, frappe, macchiato, mocha
+	flavour =  "mocha", -- require('color_overrides').flavour, -- latte, frappe, macchiato, mocha
 	background = {   -- :h background
 		light = "latte",
 		dark = "mocha",
@@ -21,7 +21,7 @@ require("catppuccin").setup({
 		types = {},
 		operators = {},
 	},
-	color_overrides = require('color_overrides'),
+	-- color_overrides = require('color_overrides'),
 	highlight_overrides = {
 		all = function(colors)
 			return {
